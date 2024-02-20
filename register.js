@@ -5,8 +5,37 @@ let modalBody = document.getElementsByClassName("modal-body")[0];
 
 register.addEventListener("click",()=>{
     modalTitle.innerHTML=`Register`;
-    modalBody.innerHTML=createRegisterForm()
-})
+    modalBody.innerHTML=createRegisterForm();
+    let submitBtn =  document.getElementById("submitBtn");
+
+    let formisValid = isValid();
+
+    if(formisValid){
+        submitBtn.removeAttribute("disabled")
+    };
+
+    submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    let inputArray = document.querySelectorAll("input");
+    let emptyField = false;
+    inputArray.forEach((element) => {
+      if (element.value === "") {
+        emptyField = true;
+        return;
+      }
+    });
+
+    if (emptyField) {
+      let errorAll = document.getElementById("errorAll");
+      errorAll.innerText = "Please fill all of the fields";
+      return;
+    }
+
+    // console.log("test");
+    postForm();
+     });
+
+});
 
 
 function createRegisterForm(){
@@ -51,7 +80,29 @@ function createRegisterForm(){
     </div>
     </div>
       <div class="col-12 dis-flex_justcont-cent">
-        <button data-bs-dismiss="modal" class="btn btn-primary" id="submitBtn" type="submit">Submit form</button>
+        <button data-bs-dismiss="modal" class="btn btn-primary" id="submitBtn"  type="submit">Submit form</button>
       </div>
-    </form>`
+    </form>`;
+}
+
+function postForm (){
+    let firstName = document.getElementById("firstName").value
+    let lastName = document.getElementById("lastName").value
+    let city = document.getElementById("city").value
+    let email = document.getElementById("email").value
+    let job = document.getElementById("job").value
+    let password = document.getElementById("password").value
+
+    const user = {
+
+        firstName : firstName,
+        lastName :  lastName,
+        city : city,
+        email : email,
+        job : job,
+        password :password,
+    };
+
+    console.log(user);
+
 }
