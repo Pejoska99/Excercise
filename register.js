@@ -105,4 +105,25 @@ function postForm (){
 
     console.log(user);
 
-}
+    
+      
+        const postData = JSON.stringify(user);
+      
+        fetch("https://65d38018522627d50109056a.mockapi.io/api/users", {
+          method: "POST",
+          body: postData,
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }).then((response) => {
+          console.log(response);
+          if(response.ok){
+            let form = document.getElementById("myForm");
+            form.reset();
+
+          }
+          return response.json();
+        });
+      }
+
+
