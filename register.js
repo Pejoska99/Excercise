@@ -95,8 +95,8 @@ function postForm (){
 
     const user = {
 
-        firstName : firstName,
-        lastName :  lastName,
+        firstname : firstName,
+        lastname :  lastName,
         city : city,
         email : email,
         job : job,
